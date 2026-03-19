@@ -1,0 +1,27 @@
+{
+  "name": "macos-cleaner",
+  "version": "1.0.0",
+  "description": "Nuxt-powered macOS storage cleaner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
+    "typecheck": "nuxt typecheck"
+  },
+  "keywords": ["cleanup", "macos", "nuxt", "developer", "cache", "node_modules"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.1",
+    "@tailwindcss/vite": "^4.1.18",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^2.2.12"
+  }
+}
