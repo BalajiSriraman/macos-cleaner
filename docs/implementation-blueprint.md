@@ -18,66 +18,20 @@
 
 ## Target Architecture
 
+Implemented layout (Nuxt 4 monolith — UI and API in one app):
+
 ```text
 macos-cleaner/
-  client/
-    src/
-      app/
-        state.ts
-        sample-data.ts
-      components/
-        app-shell.ts
-        progress-panel.ts
-        category-card.ts
-        cleanup-summary.ts
-      screens/
-        landing-screen.ts
-        results-screen.ts
-        confirm-screen.ts
-      lib/
-        api.ts
-        format.ts
-        events.ts
-      styles/
-        tokens.css
-        layout.css
-      main.ts
+  app/                 # Nuxt app: pages, components, assets
   server/
-    src/
-      app.ts
-      config.ts
-      routes/
-        health.ts
-        scan.ts
-        cleanup.ts
-        settings.ts
-      analyzers/
-        docker.ts
-        homebrew.ts
-        node-projects.ts
-        package-caches.ts
-        app-caches.ts
-        xcode.ts
-      executors/
-        docker.ts
-        homebrew.ts
-        trash.ts
-        package-caches.ts
-      services/
-        scan-engine.ts
-        cleanup-engine.ts
-        job-store.ts
-      lib/
-        command-runner.ts
-        path-policy.ts
-        size.ts
-        logger.ts
-  shared/
-    src/
-      contracts.ts
-      analyzers.ts
-      risks.ts
+    api/               # Nitro routes (scan, cleanup, jobs, health, config)
+    utils/             # scanner, cleaner, job-store, fs, commands, etc.
+  shared/              # Shared types / cleanup contracts
+  docs/                # This blueprint
+  nuxt.config.ts
 ```
+
+Earlier sketch (separate `client/src` + `server/src`) was superseded by Nuxt’s `app/` + `server/` conventions; logic below still applies conceptually.
 
 ## Backend Design
 

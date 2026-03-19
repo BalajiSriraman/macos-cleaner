@@ -1,34 +1,54 @@
 # macOS Cleaner
 
-A Nuxt 4 full-stack macOS storage cleaner.
+Local web app (Nuxt 4 + Nitro) that scans **curated** macOS / developer storage categories, shows reclaimable space, and runs cleanup after confirmation. **macOS only** — it shells out to system tools and expects macOS paths and Trash behavior.
 
-## Stack
+## Requirements
 
-- Nuxt 4 + Nitro on Node
-- Vue 3 + Composition API
-- Tailwind CSS
-- Single server in development and production
+- macOS
+- [Node.js](https://nodejs.org/) 20+ (LTS recommended)
+- [pnpm](https://pnpm.io/) 9+
 
-## What It Does
-
-- Analyzes reclaimable storage across curated macOS and developer categories
-- Streams scan and cleanup progress from Nitro server routes
-- Builds cleanup plans from trusted item ids instead of raw client delete paths
-- Moves file-based items to Trash and uses vendor commands for supported tool cleanup
-
-## Current Categories
-
-- Docker reclaimable data
-- Homebrew cache
-- Project artifacts like `node_modules`, `dist`, `build`, `.next`, and `target`
-- Package caches such as pnpm, npm, Playwright, pip, Poetry, and Cargo
-- App caches for Arc, Chrome, and Safari
-
-## Usage
+## Quick start
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-The local app runs on `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000).
+
+### Production build
+
+```bash
+pnpm build
+pnpm preview   # or: pnpm start
+```
+
+## What it does
+
+- Scans known categories (Docker reclaim, Homebrew cache, project artifacts, package caches, browser caches, etc.)
+- Streams scan/cleanup progress from Nitro API routes
+- Builds cleanup plans from **server-trusted item ids** — not arbitrary paths from the browser
+- Prefers **move to Trash** for file-based cleanup where applicable; uses vendor commands (e.g. Docker, brew) where supported
+
+## Safety
+
+This tool can **delete or reclaim large amounts of data**. Read each category and confirmation step carefully. You are responsible for what you clean. There is no warranty — use at your own risk.
+
+## Project layout
+
+| Path | Role |
+|------|------|
+| `app/` | Nuxt UI (Vue 3, Composition API, Tailwind) |
+| `server/` | Nitro routes and scan/cleanup implementation |
+| `shared/` | Types and logic shared with the server bundle |
+| `docs/implementation-blueprint.md` | Product/architecture notes |
+
+## Stack
+
+- Nuxt 4, Vue 3, Tailwind CSS 4
+- Nitro (Node server preset)
+
+## License
+
+MIT — see [LICENSE](./LICENSE).

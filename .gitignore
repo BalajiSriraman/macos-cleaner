@@ -2,5 +2,14 @@ node_modules/
 .DS_Store
 *.log
 .env
+.env.*
+!.env.example
 .nuxt/
 .output/
+.claude/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.local
+.cache/
+coverage/
